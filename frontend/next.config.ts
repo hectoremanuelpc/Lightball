@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
@@ -15,6 +14,14 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '2mb',
       allowedOrigins: ['localhost:3000'],
     },
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:3001/:path*',
+      },
+    ];
   },
 };
 

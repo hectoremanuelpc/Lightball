@@ -1,4 +1,5 @@
-import { Post } from '@/components/admin/dashboard/RecentPosts';
+import { Post } from "@/app/admin/dashboard/components/RecentPosts";
+
 
 export interface DashboardStats {
   posts: number;

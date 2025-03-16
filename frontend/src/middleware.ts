@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
 import type { NextRequest } from "next/server";
 
 /**
@@ -29,17 +28,9 @@ function isPublicRoute(pathname: string): boolean {
 /**
  * Middleware principal para proteger rutas de administración
  */
-export async function middleware(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const fullPath = pathname + search;
-
-  // Permitir siempre el acceso a rutas públicas
-  if (isPublicRoute(pathname)) {
-    // Agregar encabezados para rutas públicas
-    const response = NextResponse.next();
-    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
-    return response;
-  }
 
   // Evitar bucles de redirección
   if (isLoginRedirect(fullPath)) {
@@ -50,46 +41,43 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // Permitir siempre el acceso a rutas de API de autenticación
+  if (isAuthApiRoute(pathname)) {
+    const response = NextResponse.next();
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return response;
+  }
+
   // Verificar si la ruta es de administración
   const isAdminRoute = pathname.startsWith("/admin");
   
-  // Si es una ruta de administración, verificar autenticación
   if (isAdminRoute) {
     try {
-      // Obtener el token con opciones específicas
-      const token = await getToken({
-        req: request,
-        secret: process.env.NEXTAUTH_SECRET,
-        secureCookie: process.env.NEXTAUTH_COOKIE_SECURE === "true",
-        cookieName: `${process.env.NEXTAUTH_COOKIE_PREFIX || "lightball_"}next-auth.session-token`,
-      });
+      // Obtener el token de las cookies
+      const token = request.cookies.get('token');
       
-      // Si no hay token o el rol no es admin, redirigir al login
-      if (!token || token.role !== "admin") {
-        const url = new URL("/admin/login", request.url);
-        
-        // Evitar bucles de redirección
-        if (!isLoginRedirect(pathname)) {
-          // Usar URL absoluta para evitar problemas con los puertos
-          const absoluteCallbackUrl = new URL(request.url).toString();
-          url.searchParams.set("callbackUrl", absoluteCallbackUrl);
-        }
-        
-        return NextResponse.redirect(url);
-      } else {
-        // Usuario autenticado, permitir acceso pero agregar encabezados de seguridad
-        const response = NextResponse.next();
-        response.headers.set('X-Robots-Tag', 'noindex, nofollow');
-        response.headers.set('Cache-Control', 'no-store, max-age=0');
-        return response;
+      // Si hay token y está en login, redirigir al dashboard
+      if (pathname === '/admin/login' && token) {
+        return NextResponse.redirect(new URL('/admin/dashboard', request.url));
       }
+
+      // Si no hay token y no está en login, redirigir al login
+      if (!token && pathname !== '/admin/login') {
+        return NextResponse.redirect(new URL('/admin/login', request.url));
+      }
+
+      // Si está en login sin token o en otra ruta con token, permitir acceso
+
+      return NextResponse.next();
+
     } catch (error) {
       // En caso de error, redirigir al login por seguridad
+      console.error('Error en middleware:', error);
+
       const url = new URL("/admin/login", request.url);
       return NextResponse.redirect(url);
     }
   }
-
   return NextResponse.next();
 }
 

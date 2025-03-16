@@ -1,13 +1,14 @@
-import { Session } from "next-auth";
 import { FiHome } from "react-icons/fi";
 import Link from "next/link";
+import { useSession } from "@/components/SessionProvider";
 
 interface HeaderProps {
   activeTab: string;
-  session: Session | null;
 }
 
-export default function Header({ activeTab, session }: HeaderProps) {
+export default function Header({ activeTab }: HeaderProps) {
+  const { user } = useSession();
+  
   // Mapeo de títulos según la pestaña activa
   const tabTitles: Record<string, string> = {
     overview: "Resumen del Dashboard",
@@ -22,7 +23,7 @@ export default function Header({ activeTab, session }: HeaderProps) {
           {tabTitles[activeTab] || "Dashboard"}
         </h1>
         <p className="text-gray-500">
-          Bienvenido, {session?.user?.name || "Administrador"}
+          Bienvenido, {user?.name || "Administrador"}
         </p>
       </div>
       

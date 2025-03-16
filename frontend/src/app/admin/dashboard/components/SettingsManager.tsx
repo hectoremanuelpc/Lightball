@@ -1,7 +1,6 @@
 "use client";
-
-import { Session } from "next-auth";
 import { useState, FormEvent } from "react";
+import { useSession } from "@/components/SessionProvider";
 
 interface SettingsData {
   blogName: string;
@@ -11,14 +10,12 @@ interface SettingsData {
 }
 
 interface SettingsManagerProps {
-  session: Session | null;
   initialSettings?: SettingsData;
   onSaveSettings?: (settings: SettingsData) => Promise<void>;
   onChangePassword?: () => void;
 }
 
 export default function SettingsManager({ 
-  session, 
   initialSettings = {
     blogName: "Lightball Blog",
     blogDescription: "Blog de contenido sobre tecnología y desarrollo",
@@ -28,6 +25,7 @@ export default function SettingsManager({
   onSaveSettings,
   onChangePassword
 }: SettingsManagerProps) {
+  const { user } = useSession();
   const [settings, setSettings] = useState<SettingsData>(initialSettings);
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<{type: 'success' | 'error', text: string} | null>(null);
@@ -125,7 +123,7 @@ export default function SettingsManager({
               <input 
                 type="email" 
                 className="w-full border border-gray-300 rounded-md px-3 py-2 bg-gray-100"
-                value={session?.user?.email || ""}
+                value={user?.email || ""}
                 disabled
               />
             </div>

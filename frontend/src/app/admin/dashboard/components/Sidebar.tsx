@@ -2,14 +2,27 @@
 
 import { FiBarChart2, FiFileText, FiSettings, FiLogOut, FiHome } from "react-icons/fi";
 import Link from "next/link";
+import { authApi } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 interface SidebarProps {
   activeTab: string;
-  setActiveTab: (tab: string) => void;
-  onSignOut: () => void;
+  onTabChange: (tab: string) => void;
+  onSignOut?: () => void;
 }
 
-export default function Sidebar({ activeTab, setActiveTab, onSignOut }: SidebarProps) {
+export default function Sidebar({ activeTab, onTabChange, onSignOut }: SidebarProps) {
+  const router = useRouter();
+  
+  const handleSignOut = () => {
+    if (onSignOut) {
+      onSignOut();
+    } else {
+      authApi.logout();
+      router.push('/admin/login');
+    }
+  };
+
   return (
     <div className="w-64 bg-indigo-800 text-white min-h-screen p-4">
       <div className="mb-8">
@@ -18,46 +31,60 @@ export default function Sidebar({ activeTab, setActiveTab, onSignOut }: SidebarP
       </div>
       
       <nav className="space-y-1">
-        <button 
-          onClick={() => setActiveTab("overview")}
-          className={`flex items-center space-x-3 w-full p-3 rounded transition-colors ${activeTab === "overview" ? "bg-indigo-700" : "hover:bg-indigo-700/50"}`}
+        <button
+          onClick={() => onTabChange('overview')}
+          className={`flex items-center w-full px-4 py-2 text-left rounded-md ${
+            activeTab === 'overview' 
+              ? 'bg-indigo-900 text-white' 
+              : 'text-indigo-100 hover:bg-indigo-700'
+          }`}
         >
-          <FiBarChart2 className="text-lg" />
-          <span>Resumen</span>
+          <FiBarChart2 className="mr-3" />
+          Resumen
         </button>
         
-        <button 
-          onClick={() => setActiveTab("posts")}
-          className={`flex items-center space-x-3 w-full p-3 rounded transition-colors ${activeTab === "posts" ? "bg-indigo-700" : "hover:bg-indigo-700/50"}`}
+        <button
+          onClick={() => onTabChange('posts')}
+          className={`flex items-center w-full px-4 py-2 text-left rounded-md ${
+            activeTab === 'posts' 
+              ? 'bg-indigo-900 text-white' 
+              : 'text-indigo-100 hover:bg-indigo-700'
+          }`}
         >
-          <FiFileText className="text-lg" />
-          <span>Artículos</span>
+          <FiFileText className="mr-3" />
+          Artículos
         </button>
         
-        <button 
-          onClick={() => setActiveTab("settings")}
-          className={`flex items-center space-x-3 w-full p-3 rounded transition-colors ${activeTab === "settings" ? "bg-indigo-700" : "hover:bg-indigo-700/50"}`}
+        <button
+          onClick={() => onTabChange('settings')}
+          className={`flex items-center w-full px-4 py-2 text-left rounded-md ${
+            activeTab === 'settings' 
+              ? 'bg-indigo-900 text-white' 
+              : 'text-indigo-100 hover:bg-indigo-700'
+          }`}
         >
-          <FiSettings className="text-lg" />
-          <span>Configuración</span>
+          <FiSettings className="mr-3" />
+          Configuración
         </button>
-        
+      </nav>
+      
+      <div className="mt-auto pt-8">
         <Link 
-          href="/"
-          className="flex items-center space-x-3 w-full p-3 rounded text-indigo-200 hover:bg-indigo-700/50 hover:text-white mt-8"
+          href="/" 
+          className="flex items-center px-4 py-2 text-indigo-100 hover:bg-indigo-700 rounded-md"
         >
-          <FiHome className="text-lg" />
-          <span>Volver al sitio</span>
+          <FiHome className="mr-3" />
+          Ir al sitio
         </Link>
         
         <button 
-          onClick={onSignOut}
-          className="flex items-center space-x-3 w-full p-3 rounded text-red-300 hover:bg-red-800/30 hover:text-red-200 mt-2"
+          onClick={handleSignOut}
+          className="flex items-center w-full px-4 py-2 mt-2 text-left text-indigo-100 hover:bg-indigo-700 rounded-md"
         >
-          <FiLogOut className="text-lg" />
-          <span>Cerrar sesión</span>
+          <FiLogOut className="mr-3" />
+          Cerrar sesión
         </button>
-      </nav>
+      </div>
     </div>
   );
 } 

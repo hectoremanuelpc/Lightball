@@ -1,6 +1,5 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
-import SessionProvider from '@/components/SessionProvider';
 import LayoutWrapper from '@/components/layout/LayoutWrapper';
 import { Inter } from 'next/font/google';
 
@@ -48,9 +47,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.className}>
       <body className="min-h-screen bg-background antialiased">
-        <SessionProvider>
-          <LayoutWrapper>{children}</LayoutWrapper>
-        </SessionProvider>
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );

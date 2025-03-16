@@ -3,7 +3,7 @@ import RecentPosts from './RecentPosts';
 import { Post } from './RecentPosts';
 
 interface OverviewProps {
-  stats: {
+  stats?: {
     posts: number;
     views: number;
     subscribers: number;
@@ -11,14 +11,21 @@ interface OverviewProps {
     viewsGrowth: string;
     subscribersGrowth: string;
   };
-  recentPosts: Post[];
+  recentPosts?: Post[];
   onNewPost?: () => void;
   onEditPost?: (id: number) => void;
 }
 
 export default function Overview({
-  stats,
-  recentPosts,
+  stats = {
+    posts: 0,
+    views: 0,
+    subscribers: 0,
+    postsGrowth: "+0",
+    viewsGrowth: "+0",
+    subscribersGrowth: "+0"
+  },
+  recentPosts = [],
   onNewPost,
   onEditPost
 }: OverviewProps) {

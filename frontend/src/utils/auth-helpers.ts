@@ -42,10 +42,7 @@ export function clearAuthCookies(): void {
     
     // También limpiar en la raíz
     document.cookie = `${name}=; ${expires}; path=/;`;
-    
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`Cookie limpiada: ${name}`);
-    }
+
   });
 }
 
