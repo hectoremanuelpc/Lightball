@@ -88,7 +88,7 @@ export default function ContactCTAStatic() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative hidden md:block"
           >
             <div className="relative z-10 bg-black/40 backdrop-blur-md rounded-2xl p-8 border border-lime-300/20 shadow-xl">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-lime-300/0 via-lime-300/20 to-lime-300/0 rounded-2xl blur-sm" />
