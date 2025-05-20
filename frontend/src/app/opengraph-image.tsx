@@ -20,8 +20,7 @@ export default async function Image() {
     (
       <div
         style={{
-          fontSize: 128,
-          background: 'linear-gradient(to bottom right, #ffffff, #f3f4f6)',
+          background: '#000000',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -33,25 +32,30 @@ export default async function Image() {
       >
         <div
           style={{
-            backgroundImage: 'linear-gradient(to right, #3b82f6, #60a5fa)',
-            backgroundClip: 'text',
-            color: 'transparent',
-            fontSize: 96,
-            fontWeight: 'bold',
-            marginBottom: 24,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '24px',
           }}
         >
-          Lightball
-        </div>
-        <div
-          style={{
-            fontSize: 36,
-            color: '#1f2937',
-            maxWidth: '70%',
-            textAlign: 'center',
-          }}
-        >
-          Soluciones tecnológicas innovadoras para impulsar tu negocio
+          <img
+            src="https://lightball.tech/images/logo.svg"
+            alt="Lightball Logo"
+            style={{
+              width: '200px',
+              height: '200px',
+            }}
+          />
+          <div
+            style={{
+              fontSize: 36,
+              color: '#ffffff',
+              maxWidth: '70%',
+              textAlign: 'center',
+            }}
+          >
+            Soluciones tecnológicas innovadoras para impulsar tu negocio
+          </div>
         </div>
       </div>
     ),
