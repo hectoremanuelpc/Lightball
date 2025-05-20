@@ -2,15 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Post, blogApi } from '@/lib/api';
+import { Post, DashboardData } from '@/lib/types';
+import { blogApi, authApi } from '@/lib/api';
 import { useSession } from '@/components/SessionProvider';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Overview from './components/Overview';
 import PostsManager from './components/PostsManager';
 import SettingsManager from './components/SettingsManager';
-import { DashboardData } from '@/lib/api/dashboard';
-import { authApi } from '@/lib/api';
 
 interface DashboardClientProps {
   initialData?: DashboardData;

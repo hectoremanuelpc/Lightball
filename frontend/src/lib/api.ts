@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { LoginCredentials, LoginResponse, Post, DashboardData, BlogSettings } from './types';
 
 let accessToken: string | null = null;
 
@@ -18,37 +19,6 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
-
-export interface LoginCredentials {
-  email: string;
-  password: string;
-}
-
-export interface LoginResponse {
-  access_token: string;
-  user: {
-    email: string;
-    name: string;
-    role: string;
-  };
-}
-
-export interface Post {
-  id: string;
-  title: string;
-  content: string;
-  imageUrl: string | null;
-  published: boolean;
-  slug: string;
-  excerpt: string;
-  authorId: string;
-  createdAt: string;
-  updatedAt: string;
-  author: {
-    name: string;
-    email: string;
-  };
-}
 
 export const authApi = {
   login: async (credentials: LoginCredentials) => {
@@ -114,4 +84,20 @@ export const blogApi = {
   deletePost: async (id: string) => {
     await backendApi.delete(`/blog/${id}`);
   },
+};
+
+export const dashboardApi = {
+  getDashboardData: async (): Promise<DashboardData> => {
+    const response = await backendApi.get<DashboardData>('/dashboard');
+    return response.data;
+  },
+
+  getBlogSettings: async (): Promise<BlogSettings> => {
+    const response = await backendApi.get<BlogSettings>('/dashboard/settings');
+    return response.data;
+  },
+
+  saveBlogSettings: async (settings: BlogSettings): Promise<void> => {
+    await backendApi.put('/dashboard/settings', settings);
+  }
 }; 

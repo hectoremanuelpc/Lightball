@@ -52,8 +52,12 @@ export default function FeaturesStatic() {
               key={index}
               initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true, margin: '-50px' }}
+              transition={{ 
+                duration: 0.8,
+                delay: index * 0.2,
+                ease: "easeOut"
+              }}
+              viewport={{ once: true, amount: 0.2, margin: "50px" }}
               className="group relative bg-black/40 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-lime-300/20 hover:border-lime-300/40 overflow-hidden"
             >
               {/* Línea decorativa superior */}

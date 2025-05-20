@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getDashboardData } from '@/lib/api/dashboard';
+import { dashboardApi } from '@/lib/api';
 import DashboardClient from './client';
 
 // Componente de carga para el dashboard
@@ -16,7 +16,7 @@ function DashboardLoading() {
 
 export default async function DashboardPage() {
   // Obtener datos del dashboard en el servidor
-  const dashboardData = await getDashboardData();
+  const dashboardData = await dashboardApi.getDashboardData();
   
   return (
     <Suspense fallback={<DashboardLoading />}>

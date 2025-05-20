@@ -52,8 +52,12 @@ export default function ServicesStatic() {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true, margin: '-50px' }}
+              transition={{ 
+                duration: 0.8,
+                delay: index * 0.2,
+                ease: "easeOut"
+              }}
+              viewport={{ once: true, amount: 0.2, margin: "50px" }}
               className="group bg-black/40 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-lime-300/20 hover:border-lime-300/40"
             >
               <div className="w-16 h-16 bg-lime-300/10 rounded-xl flex items-center justify-center text-lime-300 mb-6 group-hover:bg-lime-300/20 transition-colors duration-300">

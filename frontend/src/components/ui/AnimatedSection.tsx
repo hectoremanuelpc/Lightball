@@ -11,9 +11,15 @@ interface AnimatedSectionProps extends MotionProps {
 export default function AnimatedSection({ children, className = '', ...motionProps }: AnimatedSectionProps) {
   return (
     <motion.div
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      viewport={{ once: true, margin: '0px' }}
+      transition={{ 
+        duration: 0.4,
+        ease: 'easeOut',
+        opacity: { duration: 0.3 },
+        y: { duration: 0.4 }
+      }}
       className={className}
       {...motionProps}
     >
