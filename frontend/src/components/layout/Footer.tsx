@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Logo y descripción */}
           <div className="space-y-6 md:col-span-4">
-            <Logo size="lg" />
+            <Logo className='justify-items-start'/>
             <p className="text-gray-300 max-w-xs leading-relaxed">
               Soluciones tecnológicas innovadoras para impulsar tu negocio hacia el futuro digital.
             </p>

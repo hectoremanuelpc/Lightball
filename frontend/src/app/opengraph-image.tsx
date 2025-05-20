@@ -39,7 +39,7 @@ export default async function Image() {
           }}
         >
           <img
-            src="https://lightball.tech/images/logo.svg"
+            src="https://lightball.tech/images/FullLogo_OG_black.png"
             alt="Lightball Logo"
             style={{
               width: '200px',

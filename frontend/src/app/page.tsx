@@ -17,8 +17,8 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: 'Lightball',
   url: process.env.NEXT_PUBLIC_APP_URL,
-  logo: `${process.env.NEXT_PUBLIC_APP_URL}/logo.png`,
-  image: `${process.env.NEXT_PUBLIC_APP_URL}/og-image.jpg`,
+  logo: `${process.env.NEXT_PUBLIC_APP_URL}/FullLogo_OG_black.png`,
+  image: `${process.env.NEXT_PUBLIC_APP_URL}/FullLogo_OG_black.png`,
   description: 'Consultoría tecnológica especializada en desarrollo web, móvil, cloud y soluciones de inteligencia artificial.',
   sameAs: [
     'https://twitter.com/lightball',
