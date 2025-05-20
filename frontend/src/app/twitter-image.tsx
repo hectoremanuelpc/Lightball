@@ -28,8 +28,8 @@ export default async function Image() {
           src="https://lightball.tech/images/FullLogo_OG_black.png"
           alt="Lightball Logo"
           style={{
-            width: '400px',
-            height: '400px',
+            width: '1200px',
+            height: '630px',
           }}
         />
       </div>
