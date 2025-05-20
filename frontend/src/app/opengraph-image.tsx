@@ -12,10 +12,6 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function Image() {
-  const interSemiBold = fetch(
-    new URL('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap')
-  ).then((res) => res.arrayBuffer());
-
   return new ImageResponse(
     (
       <div
@@ -27,7 +23,7 @@ export default async function Image() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: '"Inter"',
+          fontFamily: 'sans-serif',
         }}
       >
         <div
@@ -52,6 +48,7 @@ export default async function Image() {
               color: '#ffffff',
               maxWidth: '70%',
               textAlign: 'center',
+              fontWeight: 600,
             }}
           >
             Soluciones tecnológicas innovadoras para impulsar tu negocio
@@ -61,14 +58,6 @@ export default async function Image() {
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: 'Inter',
-          data: await interSemiBold,
-          style: 'normal',
-          weight: 600,
-        },
-      ],
     }
   );
 } 
