@@ -18,12 +18,14 @@ function isAuthApiRoute(url: string): boolean {
 /**
  * Verifica si una URL es una ruta pública (no requiere autenticación)
  */
+/*
 function isPublicRoute(pathname: string): boolean {
   return (
     pathname === "/admin/login" ||
     isAuthApiRoute(pathname)
   );
 }
+*/
 
 /**
  * Middleware principal para proteger rutas de administración

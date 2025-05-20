@@ -20,7 +20,6 @@ export default function PostsManager({
   onDelete, 
   onPublishToggle, 
   onRefresh,
-  onNewPost 
 }: PostsManagerProps) {
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">

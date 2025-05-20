@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import routes from '@/lib/routes';
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -104,42 +103,6 @@ const Header = () => {
         )}
       </AnimatePresence>
     </header>
-  );
-};
-
-const NavLinks = ({ mobile = false, onClick }: { mobile?: boolean; onClick?: () => void }) => {
-  // Filtramos las rutas que queremos mostrar en el menú
-  const navRoutes = routes.filter(route => 
-    route.path === '/' || 
-    route.path === '/servicios' || 
-    route.path === '/quienes-somos' || 
-    route.path === '/blog' || 
-    route.path === '/contacto'
-  );
-
-  return (
-    <>
-      {navRoutes.map((route, index) => (
-        <Link
-          key={route.path}
-          href={route.path}
-          className={`font-medium transition-colors text-white ${
-            mobile 
-              ? 'text-white text-lg hover:text-lime-300' 
-              : 'text-white hover:text-lime-300 font-semibold'
-          }`}
-          onClick={onClick}
-        >
-          <motion.span
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-          >
-            {route.label}
-          </motion.span>
-        </Link>
-      ))}
-    </>
   );
 };
 

@@ -1,5 +1,3 @@
-import { IconType } from 'react-icons';
-import { FaCode, FaSearchDollar, FaMobile, FaRocket } from 'react-icons/fa';
 
 export interface Service {
   id: string;

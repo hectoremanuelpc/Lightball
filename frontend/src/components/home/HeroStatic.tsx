@@ -7,7 +7,6 @@ import { BsArrowDown } from 'react-icons/bs';
 
 export default function HeroStatic() {
   const ref = useRef<HTMLDivElement>(null);
-  const nextSectionRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
     target: ref,

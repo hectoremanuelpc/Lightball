@@ -20,7 +20,7 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollTo = useCallback((index: number) => {
-    emblaApi && emblaApi.scrollTo(index);
+    emblaApi?.scrollTo(index);
   }, [emblaApi]);
 
   const onSelect = useCallback(() => {

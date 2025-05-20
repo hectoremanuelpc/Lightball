@@ -1,11 +1,6 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import LayoutWrapper from '@/components/layout/LayoutWrapper';
-import { Inter } from 'next/font/google';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const viewport: Viewport = {
   themeColor: '#ffffff',

@@ -30,6 +30,7 @@ export default function LoginForm({ loginAction }: LoginFormProps) {
         setError(result.error || 'Error al iniciar sesión');
       }
     } catch (error) {
+      console.error('Error al iniciar sesión:', error);
       setError('Error al iniciar sesión');
     } finally {
       setIsLoading(false);

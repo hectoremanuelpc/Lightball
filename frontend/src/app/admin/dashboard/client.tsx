@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Post, blogApi } from '@/lib/api';
 import { useSession } from '@/components/SessionProvider';
-import { formatDate } from '@/lib/utils';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Overview from './components/Overview';

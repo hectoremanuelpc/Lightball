@@ -44,6 +44,7 @@ export default function SettingsManager({
         text: 'Configuración guardada correctamente'
       });
     } catch (error) {
+      console.error('Error al guardar la configuración:', error);
       setSaveMessage({
         type: 'error',
         text: 'Error al guardar la configuración'

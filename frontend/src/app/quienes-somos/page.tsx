@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import HeroSection from './components/HeroSection';
 import ValoresSection from './components/ValoresSection';
 import PorQueElegirnos from './components/PorQueElegirnos';
-import { misionVision, valores, razones, heroContent } from '@/data/quienes-somos/quienes-somos';
+import { valores, razones, heroContent } from '@/data/quienes-somos/quienes-somos';
 
 export const metadata: Metadata = {
   title: 'Quiénes Somos',

@@ -24,7 +24,7 @@ export default function NewPostPage() {
       await blogApi.createPost({
         title,
         content,
-        imageUrl: imageUrl || undefined,
+        imageUrl: imageUrl || null,
         published,
         excerpt: content.substring(0, 150) + '...',
       });

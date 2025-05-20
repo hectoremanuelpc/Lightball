@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
 import Script from 'next/script';
 
 interface JsonLdProps {
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 }
 
 export default function JsonLd({ data }: JsonLdProps) {
