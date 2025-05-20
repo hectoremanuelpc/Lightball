@@ -13,8 +13,8 @@ export default function HeroStatic() {
     offset: ['start start', 'end start'],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '10%']);
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
   const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   const scrollToNextSection = () => {
@@ -31,31 +31,29 @@ export default function HeroStatic() {
       className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black pb-safe"
       style={{ 
         zIndex: 1,
-        minHeight: '-webkit-fill-available'  // Asegura altura correcta en Safari móvil
+        minHeight: '-webkit-fill-available'
       }}
       aria-label="Sección principal"
     >
-      {/* Fondo con efecto parallax */}
-      <motion.div
-        className="absolute inset-0 z-0"
-        style={{ y: backgroundY }}
-        aria-hidden="true"
-      >
+      {/* Fondo con efecto estático */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-b from-lime-300/10 via-black to-black" />
-        <motion.div
-          className="absolute inset-0 opacity-30"
-        >
+        <motion.div className="absolute inset-0 opacity-30">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-lime-300/40 blur-[100px] animate-[pulse_4s_ease-in-out_infinite]" />
           <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-lime-300/30 blur-[120px] animate-[pulse_4s_ease-in-out_infinite]" style={{ animationDelay: '1s' }} />
           <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] rounded-full bg-lime-300/40 blur-[100px] animate-[pulse_4s_ease-in-out_infinite]" style={{ animationDelay: '2s' }} />
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Contenido */}
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
           className="max-w-5xl mx-auto text-center pt-20 sm:pt-16 md:pt-0"
-          style={{ y: textY }}
+          style={{ 
+            opacity,
+            scale,
+            willChange: 'transform, opacity'
+          }}
         >
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
