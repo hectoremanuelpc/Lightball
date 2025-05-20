@@ -13,14 +13,12 @@ export default function HeroStatic() {
     offset: ['start start', 'end start'],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '10%']);
+  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   const scrollToNextSection = () => {
-    // Obtener la altura de la ventana
     const windowHeight = window.innerHeight;
-    // Desplazarse hacia abajo una altura de ventana menos un margen para que el título no quede pegado
     window.scrollTo({
       top: windowHeight - 50,
       behavior: 'smooth'
@@ -44,11 +42,13 @@ export default function HeroStatic() {
         aria-hidden="true"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-lime-300/10 via-black to-black" />
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-lime-300/40 blur-[100px] animate-pulse" />
-          <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-lime-300/30 blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] rounded-full bg-lime-300/40 blur-[100px] animate-pulse" style={{ animationDelay: '2s' }} />
-        </div>
+        <motion.div
+          className="absolute inset-0 opacity-30"
+        >
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-lime-300/40 blur-[100px] animate-[pulse_4s_ease-in-out_infinite]" />
+          <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-lime-300/30 blur-[120px] animate-[pulse_4s_ease-in-out_infinite]" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] rounded-full bg-lime-300/40 blur-[100px] animate-[pulse_4s_ease-in-out_infinite]" style={{ animationDelay: '2s' }} />
+        </motion.div>
       </motion.div>
 
       {/* Contenido */}
@@ -70,8 +70,8 @@ export default function HeroStatic() {
                 backgroundPosition: ['200%', '-155%']
               }}
               transition={{
-                duration: 4,
-                ease: "easeInOut",
+                duration: 6,
+                ease: "linear",
                 repeat: Infinity,
                 repeatType: "reverse"
               }}
@@ -159,11 +159,11 @@ export default function HeroStatic() {
           <motion.div
             className="bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-full shadow-lg border border-white/30"
             animate={{ 
-              y: [0, 8, 0],
+              y: [0, 6, 0],
             }}
             transition={{ 
               repeat: Infinity, 
-              duration: 2,
+              duration: 2.5,
               ease: "easeInOut"
             }}
           >
