@@ -12,14 +12,19 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
   title: {
-    default: 'Lightball Blog',
-    template: '%s | Lightball Blog',
+    default: 'Lightball - Consultoría Tecnológica y Desarrollo Web',
+    template: '%s | Lightball',
   },
-  description: 'Blog de contenido sobre tecnología y desarrollo',
-  keywords: ['tecnología', 'desarrollo', 'programación', 'blog'],
+  description: 'Consultoría tecnológica especializada en desarrollo web, móvil, cloud y soluciones de inteligencia artificial. Expertos en transformación digital para PYMEs.',
+  keywords: ['consultoría tecnológica', 'desarrollo web', 'SEO', 'transformación digital', 'PYMEs', 'cloud', 'inteligencia artificial'],
   authors: [{ name: 'Lightball Team' }],
-  creator: 'Lightball Team',
+  creator: 'Lightball',
   publisher: 'Lightball',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   robots: {
     index: true,
     follow: true,
@@ -33,6 +38,28 @@ export const metadata: Metadata = {
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    url: process.env.NEXT_PUBLIC_APP_URL,
+    siteName: 'Lightball',
+    title: 'Lightball - Consultoría Tecnológica y Desarrollo Web',
+    description: 'Consultoría tecnológica especializada en desarrollo web, móvil, cloud y soluciones de inteligencia artificial.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Lightball - Consultoría Tecnológica',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lightball - Consultoría Tecnológica y Desarrollo Web',
+    description: 'Consultoría tecnológica especializada en desarrollo web, móvil, cloud y soluciones de inteligencia artificial.',
+    images: ['/og-image.jpg'],
   },
 };
 
