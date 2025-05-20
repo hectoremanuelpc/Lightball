@@ -42,13 +42,13 @@ const routes: Route[] = [
     changeFrequency: 'yearly',
     priority: 0.6,
   },
-  {
+  /*{
     path: '/casos-de-exito',
     label: 'Casos de Éxito',
     lastModified: new Date().toISOString().split('T')[0],
     changeFrequency: 'monthly',
     priority: 0.7,
-  },
+  },*/
 ];
 
 export default routes; 

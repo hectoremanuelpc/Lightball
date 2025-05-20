@@ -95,7 +95,7 @@ export default function HeroStatic() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center"
+            className="flex flex-col sm:flex-row gap-6 justify-center mb-16 sm:mb-0"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -135,7 +135,7 @@ export default function HeroStatic() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 cursor-pointer"
+        className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 cursor-pointer"
         onClick={scrollToNextSection}
         whileHover={{ scale: 1.1 }}
         aria-label="Desplazarse a la siguiente sección"
