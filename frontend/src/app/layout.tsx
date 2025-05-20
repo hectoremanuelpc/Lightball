@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     description: 'Consultoría tecnológica especializada en desarrollo web, móvil, cloud y soluciones de inteligencia artificial.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/images/FullLogo_OG_black.png',
         width: 1200,
         height: 630,
         alt: 'Lightball - Consultoría Tecnológica',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Lightball - Consultoría Tecnológica y Desarrollo Web',
     description: 'Consultoría tecnológica especializada en desarrollo web, móvil, cloud y soluciones de inteligencia artificial.',
-    images: ['/og-image.jpg'],
+    images: ['/images/FullLogo_OG_black.png'],
   },
 };
 

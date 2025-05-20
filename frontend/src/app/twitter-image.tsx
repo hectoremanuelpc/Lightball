@@ -12,10 +12,6 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function Image() {
-  const interSemiBold = fetch(
-    new URL('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap')
-  ).then((res) => res.arrayBuffer());
-
   return new ImageResponse(
     (
       <div
@@ -24,51 +20,22 @@ export default async function Image() {
           width: '100%',
           height: '100%',
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: '"Inter"',
         }}
       >
-        <div
+        <img
+          src="https://lightball.tech/images/FullLogo_OG_black.png"
+          alt="Lightball Logo"
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '24px',
+            width: '400px',
+            height: '400px',
           }}
-        >
-          <img
-            src="https://lightball.tech/images/FullLogo_OG_black.png"
-            alt="Lightball Logo"
-            style={{
-              width: '200px',
-              height: '200px',
-            }}
-          />
-          <div
-            style={{
-              fontSize: 36,
-              color: '#ffffff',
-              maxWidth: '70%',
-              textAlign: 'center',
-            }}
-          >
-            Soluciones tecnológicas innovadoras para impulsar tu negocio
-          </div>
-        </div>
+        />
       </div>
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: 'Inter',
-          data: await interSemiBold,
-          style: 'normal',
-          weight: 600,
-        },
-      ],
     }
   );
 } 
