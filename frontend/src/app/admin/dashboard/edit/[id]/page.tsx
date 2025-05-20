@@ -3,7 +3,8 @@
 import { use } from 'react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Post, blogApi } from '@/lib/api';
+import { Post } from '@/lib/types';
+import { blogApi } from '@/lib/api';
 
 interface EditPostPageProps {
   params: Promise<{

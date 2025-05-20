@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Post } from '@/lib/api';
+import { Post } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatDate } from '@/lib/utils';

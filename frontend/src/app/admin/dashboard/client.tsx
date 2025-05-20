@@ -111,7 +111,12 @@ export default function DashboardClient({ initialData }: DashboardClientProps) {
         {activeTab === 'overview' && (
           <Overview 
             stats={initialData?.stats} 
-            recentPosts={initialData?.recentPosts}
+            recentPosts={initialData?.recentPosts?.map(post => ({
+              id: typeof post.id === 'string' ? parseInt(post.id) : post.id,
+              title: post.title,
+              date: post.createdAt,
+              status: post.published ? 'Publicado' : 'Borrador'
+            }))}
           />
         )}
         

@@ -2,7 +2,7 @@
 
 import { FiPlusCircle, FiEdit, FiTrash2, FiEye, FiEyeOff } from "react-icons/fi";
 import Link from "next/link";
-import { Post } from "@/lib/api";
+import { Post } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
 interface PostsManagerProps {
@@ -87,7 +87,7 @@ export default function PostsManager({
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button
-                      onClick={() => onPublishToggle(post.id, post.published)}
+                      onClick={() => onPublishToggle(String(post.id), post.published)}
                       className={`flex items-center px-3 py-1 rounded-full text-sm font-medium ${
                         post.published
                           ? 'bg-green-100 text-green-800'
@@ -107,13 +107,13 @@ export default function PostsManager({
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
                     <Link
-                      href={`/admin/dashboard/edit/${post.id}`}
+                      href={`/admin/dashboard/edit/${String(post.id)}`}
                       className="text-indigo-600 hover:text-indigo-900"
                     >
                       <FiEdit className="inline mr-1" /> Editar
                     </Link>
                     <button
-                      onClick={() => onDelete(post.id)}
+                      onClick={() => onDelete(String(post.id))}
                       className="text-red-600 hover:text-red-900"
                     >
                       <FiTrash2 className="inline mr-1" /> Eliminar

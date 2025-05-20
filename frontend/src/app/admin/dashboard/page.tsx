@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { dashboardApi } from '@/lib/api';
 import DashboardClient from './client';
+import { DashboardData } from '@/lib/types';
 
 // Componente de carga para el dashboard
 function DashboardLoading() {
@@ -14,9 +14,39 @@ function DashboardLoading() {
   );
 }
 
+// Datos iniciales para desarrollo y build time
+const initialDashboardData: DashboardData = {
+  stats: {
+    posts: 0,
+    views: 0,
+    subscribers: 0,
+    postsGrowth: "+0%",
+    viewsGrowth: "+0%",
+    subscribersGrowth: "+0%"
+  },
+  recentPosts: []
+};
+
+async function getDashboardData(): Promise<DashboardData> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'}/dashboard`, {
+      next: { revalidate: 60 }
+    });
+    
+    if (!res.ok) {
+      console.warn('Error al cargar los datos del dashboard, usando datos iniciales');
+      return initialDashboardData;
+    }
+    
+    return res.json();
+  } catch (error) {
+    console.warn('Error al conectar con el servidor, usando datos iniciales:', error);
+    return initialDashboardData;
+  }
+}
+
 export default async function DashboardPage() {
-  // Obtener datos del dashboard en el servidor
-  const dashboardData = await dashboardApi.getDashboardData();
+  const dashboardData = await getDashboardData();
   
   return (
     <Suspense fallback={<DashboardLoading />}>
