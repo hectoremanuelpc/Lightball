@@ -2,6 +2,8 @@ import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import LayoutWrapper from '@/components/layout/LayoutWrapper';
 import { Inter } from 'next/font/google';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -45,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={inter.className}>
+    <html lang="es" className="dark">
       <body className="min-h-screen bg-background antialiased">
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>

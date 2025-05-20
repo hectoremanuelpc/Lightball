@@ -1,31 +1,41 @@
+import { IconType } from 'react-icons';
+import { BsCheckCircle, BsPerson, BsLightning, BsHeadset, BsGraphUp, BsShieldCheck } from 'react-icons/bs';
+
 export interface Feature {
   title: string;
   description: string;
+  icon: IconType;
 }
 
 export const features: Feature[] = [
   {
+    title: 'Experiencia Comprobada',
+    description: 'Más de 10 años de experiencia en el desarrollo de soluciones tecnológicas innovadoras.',
+    icon: BsCheckCircle
+  },
+  {
     title: 'Enfoque Personalizado',
-    description: 'Cada proyecto es único. Analizamos tus necesidades específicas para ofrecer soluciones a medida que maximicen el valor para tu negocio.',
+    description: 'Cada proyecto es único. Desarrollamos soluciones a medida que se adaptan a tus necesidades específicas.',
+    icon: BsPerson
   },
   {
     title: 'Tecnología de Vanguardia',
-    description: 'Utilizamos las últimas tecnologías y metodologías para garantizar soluciones robustas, escalables y preparadas para el futuro.',
+    description: 'Utilizamos las últimas tecnologías y metodologías para garantizar resultados óptimos.',
+    icon: BsLightning
   },
   {
-    title: 'Equipo Experto',
-    description: 'Nuestro equipo multidisciplinar combina experiencia técnica con conocimiento de negocio para ofrecer resultados excepcionales.',
+    title: 'Soporte Continuo',
+    description: 'Ofrecemos soporte técnico y mantenimiento continuo para asegurar el funcionamiento óptimo de tus sistemas.',
+    icon: BsHeadset
   },
   {
     title: 'Metodología Ágil',
     description: 'Trabajamos con metodologías ágiles que permiten adaptarnos rápidamente a cambios y entregar valor de forma continua.',
-  },
-  {
-    title: 'Soporte Continuo',
-    description: 'Ofrecemos soporte y mantenimiento continuo para asegurar que tus soluciones tecnológicas evolucionen con tu negocio.',
+    icon: BsGraphUp
   },
   {
     title: 'Resultados Medibles',
-    description: 'Nos enfocamos en generar resultados tangibles y medibles que impacten positivamente en tus objetivos de negocio.',
-  },
+    description: 'Nos enfocamos en entregar resultados tangibles y medibles que impacten positivamente en tu negocio.',
+    icon: BsShieldCheck
+  }
 ]; 

@@ -1,22 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
-  --secondary-foreground: #1f2937;
-  --accent: #60a5fa;
-  --accent-foreground: #ffffff;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
-  --card: #ffffff;
-  --card-foreground: #171717;
-  --border: #e5e7eb;
-  --input: #e5e7eb;
-  --ring: #3b82f6;
+  --background: var(--white-smoke);
+  --foreground: var(--black);
+  --primary: var(--black);
+  --primary-foreground: var(--white-smoke);
+  --secondary: var(--davys-gray);
+  --secondary-foreground: var(--white-smoke);
+  --accent: var(--lime);
+  --accent-foreground: var(--black);
+  --muted: var(--davys-gray);
+  --muted-foreground: var(--silver);
+  --card: var(--white-smoke);
+  --card-foreground: var(--black);
+  --border: var(--silver);
+  --input: var(--silver);
+  --ring: var(--black);
   --radius: 0.5rem;
+
+  /* Nueva paleta de colores */
+  --black: #000000ff;
+  --davys-gray: #1f1f1fff;
+  --lime: #ccff00ff;
+  --silver: #c9c9c9ff;
+  --white-smoke: #f2f2f2ff;
 }
 
 @theme inline {
@@ -27,30 +34,56 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #3b82f6;
-    --primary-foreground: #ffffff;
-    --secondary: #1f2937;
-    --secondary-foreground: #f3f4f6;
-    --accent: #60a5fa;
-    --accent-foreground: #ffffff;
-    --muted: #1f2937;
-    --muted-foreground: #9ca3af;
-    --card: #0a0a0a;
-    --card-foreground: #ededed;
-    --border: #1f2937;
-    --input: #1f2937;
-    --ring: #3b82f6;
+    --background: var(--black);
+    --foreground: var(--white-smoke);
+    --primary: var(--lime);
+    --primary-foreground: var(--black);
+    --secondary: var(--davys-gray);
+    --secondary-foreground: var(--white-smoke);
+    --accent: var(--lime);
+    --accent-foreground: var(--black);
+    --muted: var(--davys-gray);
+    --muted-foreground: var(--silver);
+    --card: var(--black);
+    --card-foreground: var(--white-smoke);
+    --border: var(--davys-gray);
+    --input: var(--davys-gray);
+    --ring: var(--lime);
   }
 }
 
 body {
-  background: var(--background);
+  background: var(--black);
   color: var(--foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* Ajustes para modo oscuro */
+.dark {
+  color-scheme: dark;
+  background-color: var(--black);
+}
+
+.dark .bg-white-smoke {
+  background-color: var(--black);
+}
+
+.dark .text-black {
+  color: var(--black);
+}
+
+.dark .from-black\/5 {
+  --tw-gradient-from: rgba(204, 255, 0, 0.1);
+}
+
+.dark .via-lime-300 {
+  --tw-gradient-via: rgba(204, 255, 0, 0.9);
+}
+
+.dark .to-black\/5 {
+  --tw-gradient-to: rgba(204, 255, 0, 0.1);
 }
 
 .parallax-container {

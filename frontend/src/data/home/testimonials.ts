@@ -24,4 +24,10 @@ export const testimonials: Testimonial[] = [
     position: "CEO, RetailPlus",
     image: "https://randomuser.me/api/portraits/women/3.jpg",
   },
+  {
+    quote: "El equipo de Lightball demostró un profundo conocimiento técnico y una gran capacidad para resolver problemas complejos. Su solución nos ayudó a optimizar nuestros procesos internos.",
+    author: "Daniel López",
+    position: "Director de Operaciones, LogisticPro",
+    image: "https://randomuser.me/api/portraits/men/4.jpg",
+  },
 ]; 

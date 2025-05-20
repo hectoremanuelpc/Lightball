@@ -1,41 +1,57 @@
-import { BsTelephone } from 'react-icons/bs';
-import { MdEmail } from 'react-icons/md';
-import { TbWorld } from 'react-icons/tb';
+"use client";
+
+import { motion } from "framer-motion";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function ContactInfo() {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
-      <h3 className="text-xl font-bold mb-4 text-primary">Información de contacto</h3>
-      <div className="space-y-4">
-        <div className="flex items-start">
-          <div className="bg-primary/10 p-3 rounded-full mr-4">
-            <BsTelephone className="w-5 h-5 text-primary" />
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="relative group"
+    >
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--lime)]/20 via-[var(--lime)]/10 to-transparent rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+      <div className="relative bg-black/80 backdrop-blur-md rounded-xl p-6 border border-[var(--lime)]/20 hover:border-[var(--lime)]/40 transition-all duration-300">
+        <h3 className="text-xl font-bold text-white mb-6">Información de Contacto</h3>
+        <div className="space-y-4">
+          <div className="flex items-start space-x-3">
+            <div className="p-2 bg-[var(--lime)]/10 rounded-lg mt-1">
+              <FaEnvelope className="w-5 h-5 text-[var(--lime)]" />
+            </div>
+            <div>
+              <p className="text-gray-300 font-medium">Email</p>
+              <a href="mailto:info@lightball.es" className="text-[var(--lime)] hover:text-[var(--lime)]/80 transition-colors duration-200">
+                info@lightball.es
+              </a>
+            </div>
           </div>
-          <div>
-            <h4 className="font-medium">Teléfono</h4>
-            <p className="text-muted-foreground">+34 000 000 000</p>
+          
+          <div className="flex items-start space-x-3">
+            <div className="p-2 bg-[var(--lime)]/10 rounded-lg mt-1">
+              <FaPhone className="w-5 h-5 text-[var(--lime)]" />
+            </div>
+            <div>
+              <p className="text-gray-300 font-medium">Teléfono</p>
+              <a href="tel:+34000000000" className="text-[var(--lime)] hover:text-[var(--lime)]/80 transition-colors duration-200">
+                +34 000 000 000
+              </a>
+            </div>
           </div>
-        </div>
-        
-        <div className="flex items-start">
-          <div className="bg-primary/10 p-3 rounded-full mr-4">
-            <MdEmail className="w-5 h-5 text-primary" />
-          </div>
-          <div>
-            <h4 className="font-medium">Email</h4>
-            <p className="text-muted-foreground">info@lightball.com</p>
-          </div>
-        </div>
-        
-        <div className="flex items-center">
-          <div className="bg-primary/10 p-3 rounded-full mr-4">
-            <TbWorld className="w-5 h-5 text-primary" />
-          </div>
-          <div>
-            <h4 className="font-medium">Servicio 100% online</h4>
+          
+          <div className="flex items-start space-x-3">
+            <div className="p-2 bg-[var(--lime)]/10 rounded-lg mt-1">
+              <FaMapMarkerAlt className="w-5 h-5 text-[var(--lime)]" />
+            </div>
+            <div>
+              <p className="text-gray-300 font-medium">Ubicación</p>
+              <p className="text-gray-400">
+                Madrid, España
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 } 

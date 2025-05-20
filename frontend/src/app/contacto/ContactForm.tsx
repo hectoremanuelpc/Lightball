@@ -49,7 +49,7 @@ const ErrorMessage = ({ message }: { message: string }) => (
     <motion.p
         initial={{ opacity: 0, y: -5 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mt-1 text-sm text-red-500 flex items-center"
+        className="mt-1 text-sm text-red-400 flex items-center"
     >
         <BiErrorCircle className="w-3 h-3 mr-1 flex-shrink-0" />
         {message}
@@ -147,16 +147,18 @@ export default function ContactForm() {
 
     return (
         <div className="w-full">
-            <h2 className="text-2xl font-bold mb-6">Envíanos un mensaje</h2>
+            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-[var(--lime)] via-white to-[var(--lime)] bg-clip-text text-transparent">
+                Envíanos un mensaje
+            </h2>
 
             {isSuccess && (
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-green-50 text-green-800 p-4 rounded-md mb-6 border border-green-200"
+                    className="bg-[var(--lime)]/10 text-[var(--lime)] p-4 rounded-lg mb-6 border border-[var(--lime)]/20"
                 >
                     <div className="flex items-center">
-                        <BsCheckCircle className="w-5 h-5 mr-2 text-green-500" />
+                        <BsCheckCircle className="w-5 h-5 mr-2" />
                         <p className="font-medium">¡Mensaje enviado con éxito!</p>
                     </div>
                     <p className="text-sm mt-1 ml-7">Nos pondremos en contacto contigo lo antes posible.</p>
@@ -167,10 +169,10 @@ export default function ContactForm() {
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-red-50 text-red-800 p-4 rounded-md mb-6 border border-red-200"
+                    className="bg-red-500/10 text-red-400 p-4 rounded-lg mb-6 border border-red-500/20"
                 >
                     <div className="flex items-center">
-                        <BiErrorCircle className="w-5 h-5 mr-2 text-red-500" />
+                        <BiErrorCircle className="w-5 h-5 mr-2" />
                         <p className="font-medium">Error</p>
                     </div>
                     <p className="text-sm mt-1 ml-7">{errorMessage}</p>
@@ -180,15 +182,17 @@ export default function ContactForm() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label htmlFor="nombre" className="block text-sm font-medium mb-1">
-                            Nombre <span className="text-red-500">*</span>
+                        <label htmlFor="nombre" className="block text-sm font-medium mb-2 text-gray-300">
+                            Nombre <span className="text-[var(--lime)]">*</span>
                         </label>
                         <input
                             id="nombre"
                             type="text"
-                            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                                errors.nombre || nombreError ? "border-red-500 bg-red-50" : "border-gray-300"
-                            }`}
+                            className={`w-full px-4 py-3 bg-black/50 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/50 ${
+                                errors.nombre || nombreError 
+                                    ? "border-red-500/50 bg-red-500/5" 
+                                    : "border-[var(--lime)]/20 hover:border-[var(--lime)]/40"
+                            } text-white placeholder-gray-500 transition-colors duration-200`}
                             placeholder="Tu nombre"
                             {...register("nombre")}
                             disabled={isSubmitting}
@@ -200,15 +204,17 @@ export default function ContactForm() {
                     </div>
 
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium mb-1">
-                            Email <span className="text-red-500">*</span>
+                        <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-300">
+                            Email <span className="text-[var(--lime)]">*</span>
                         </label>
                         <input
                             id="email"
                             type="email"
-                            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                                errors.email ? "border-red-500 bg-red-50" : "border-gray-300"
-                            }`}
+                            className={`w-full px-4 py-3 bg-black/50 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/50 ${
+                                errors.email 
+                                    ? "border-red-500/50 bg-red-500/5" 
+                                    : "border-[var(--lime)]/20 hover:border-[var(--lime)]/40"
+                            } text-white placeholder-gray-500 transition-colors duration-200`}
                             placeholder="tu@email.com"
                             {...register("email")}
                             disabled={isSubmitting}
@@ -219,15 +225,17 @@ export default function ContactForm() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label htmlFor="telefono" className="block text-sm font-medium mb-1">
+                        <label htmlFor="telefono" className="block text-sm font-medium mb-2 text-gray-300">
                             Teléfono
                         </label>
                         <input
                             id="telefono"
                             type="tel"
-                            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                                errors.telefono || telefonoError ? "border-red-500 bg-red-50" : "border-gray-300"
-                            }`}
+                            className={`w-full px-4 py-3 bg-black/50 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/50 ${
+                                errors.telefono || telefonoError 
+                                    ? "border-red-500/50 bg-red-500/5" 
+                                    : "border-[var(--lime)]/20 hover:border-[var(--lime)]/40"
+                            } text-white placeholder-gray-500 transition-colors duration-200`}
                             placeholder="+34 000 000 000"
                             {...register("telefono")}
                             disabled={isSubmitting}
@@ -239,13 +247,13 @@ export default function ContactForm() {
                     </div>
 
                     <div>
-                        <label htmlFor="empresa" className="block text-sm font-medium mb-1">
+                        <label htmlFor="empresa" className="block text-sm font-medium mb-2 text-gray-300">
                             Empresa
                         </label>
                         <input
                             id="empresa"
                             type="text"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
+                            className="w-full px-4 py-3 bg-black/50 border border-[var(--lime)]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/50 text-white placeholder-gray-500 hover:border-[var(--lime)]/40 transition-colors duration-200"
                             placeholder="Nombre de tu empresa"
                             {...register("empresa")}
                             disabled={isSubmitting}
@@ -254,15 +262,17 @@ export default function ContactForm() {
                 </div>
 
                 <div>
-                    <label htmlFor="asunto" className="block text-sm font-medium mb-1">
-                        Asunto <span className="text-red-500">*</span>
+                    <label htmlFor="asunto" className="block text-sm font-medium mb-2 text-gray-300">
+                        Asunto <span className="text-[var(--lime)]">*</span>
                     </label>
                     <input
                         id="asunto"
                         type="text"
-                        className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                            errors.asunto ? "border-red-500 bg-red-50" : "border-gray-300"
-                        }`}
+                        className={`w-full px-4 py-3 bg-black/50 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/50 ${
+                            errors.asunto 
+                                ? "border-red-500/50 bg-red-500/5" 
+                                : "border-[var(--lime)]/20 hover:border-[var(--lime)]/40"
+                        } text-white placeholder-gray-500 transition-colors duration-200`}
                         placeholder="Asunto de tu consulta"
                         {...register("asunto")}
                         disabled={isSubmitting}
@@ -271,15 +281,17 @@ export default function ContactForm() {
                 </div>
 
                 <div>
-                    <label htmlFor="mensaje" className="block text-sm font-medium mb-1">
-                        Mensaje <span className="text-red-500">*</span>
+                    <label htmlFor="mensaje" className="block text-sm font-medium mb-2 text-gray-300">
+                        Mensaje <span className="text-[var(--lime)]">*</span>
                     </label>
                     <textarea
                         id="mensaje"
                         rows={5}
-                        className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-                            errors.mensaje ? "border-red-500 bg-red-50" : "border-gray-300"
-                        }`}
+                        className={`w-full px-4 py-3 bg-black/50 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/50 ${
+                            errors.mensaje 
+                                ? "border-red-500/50 bg-red-500/5" 
+                                : "border-[var(--lime)]/20 hover:border-[var(--lime)]/40"
+                        } text-white placeholder-gray-500 transition-colors duration-200 resize-none`}
                         placeholder="Describe tu proyecto o necesidad con el mayor detalle posible"
                         {...register("mensaje")}
                         disabled={isSubmitting}
@@ -288,12 +300,12 @@ export default function ContactForm() {
                 </div>
 
                 <div>
-                    <label htmlFor="como_nos_conocio" className="block text-sm font-medium mb-1">
+                    <label htmlFor="como_nos_conocio" className="block text-sm font-medium mb-2 text-gray-300">
                         ¿Cómo nos conociste?
                     </label>
                     <select
                         id="como_nos_conocio"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        className="w-full px-4 py-3 bg-black/50 border border-[var(--lime)]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/50 text-white placeholder-gray-500 hover:border-[var(--lime)]/40 transition-colors duration-200"
                         {...register("como_nos_conocio")}
                         disabled={isSubmitting}
                     >
@@ -311,9 +323,11 @@ export default function ContactForm() {
                         <input
                             id="politica"
                             type="checkbox"
-                            className={`w-4 h-4 border rounded focus:ring-2 focus:ring-primary ${
-                                errors.politica ? "border-red-500 bg-red-50" : "border-gray-300"
-                            }`}
+                            className={`w-4 h-4 border rounded focus:ring-2 focus:ring-[var(--lime)]/50 bg-black/50 ${
+                                errors.politica 
+                                    ? "border-red-500/50" 
+                                    : "border-[var(--lime)]/20 hover:border-[var(--lime)]/40"
+                            } transition-colors duration-200`}
                             {...register("politica")}
                             disabled={isSubmitting}
                         />
@@ -321,18 +335,18 @@ export default function ContactForm() {
                     <div className="ml-3 text-sm">
                         <label
                             htmlFor="politica"
-                            className={`font-medium ${errors.politica ? "text-red-500" : "text-gray-700"}`}
+                            className={`font-medium ${errors.politica ? "text-red-400" : "text-gray-300"}`}
                         >
                             Acepto la{" "}
                             <Link
                                 href="/politica-privacidad"
-                                className="text-primary font-bold underline hover:text-primary/80"
+                                className="text-[var(--lime)] font-bold hover:text-[var(--lime)]/80 transition-colors duration-200"
                             >
                                 política de privacidad
                             </Link>{" "}
-                            <span className="text-red-500">*</span>
+                            <span className="text-[var(--lime)]">*</span>
                         </label>
-                        <p className="text-muted-foreground text-xs mt-1">
+                        <p className="text-gray-400 text-xs mt-1">
                             Al enviar este formulario, aceptas que tus datos sean procesados según nuestra política de
                             privacidad.
                         </p>
@@ -348,11 +362,11 @@ export default function ContactForm() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-primary cursor-pointer text-gray-800 py-4 px-6 rounded-md font-bold text-lg hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                        className="w-full bg-[var(--lime)] text-black py-4 px-6 rounded-lg font-bold text-lg hover:bg-[var(--lime)]/90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--lime)]/50 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:shadow-[var(--lime)]/20"
                     >
                         {isSubmitting ? (
                             <span className="flex items-center justify-center">
-                                <BiLoaderAlt className="animate-spin -ml-1 mr-2 h-5 w-5 text-gray-800" />
+                                <BiLoaderAlt className="animate-spin -ml-1 mr-2 h-5 w-5" />
                                 Enviando...
                             </span>
                         ) : (

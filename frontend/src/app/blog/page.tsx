@@ -3,6 +3,7 @@ import { blogApi, Post } from '@/lib/api';
 import Image from 'next/image';
 import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
+import { FaArrowRight } from 'react-icons/fa';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -31,45 +32,54 @@ export default async function BlogPage() {
   const posts = await getBlogPosts();
 
   return (
-    <div className="container mx-auto px-4 py-36">
-      <h1 className="text-4xl font-bold mb-8 text-center">Nuestro Blog</h1>
-      
-      {posts.length === 0 ? (
-        <div className="text-center py-12">
-          <h2 className="text-2xl font-semibold mb-4">No hay artículos disponibles</h2>
-          <p className="text-gray-600">Vuelve pronto para ver nuevo contenido.</p>
-        </div>
-      ) : (
-        <div className="space-y-8">
-          {posts.map((post) => (
-            <div key={post.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row">
-              {post.imageUrl && (
-                <div className="relative h-64 md:w-1/3 w-full">
-                  <Image
-                    src={post.imageUrl}
-                    alt={post.title}
-                    fill
-                    className="object-cover"
-                  />
+    <div className="relative min-h-screen bg-gradient-to-b from-black to-davys-gray/20 overflow-hidden">
+      {/* Elementos de fondo */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-lime/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-lime/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+      </div>
+
+      <div className="container mx-auto px-4 py-36 relative z-10">
+        <h1 className="text-4xl font-bold mb-8 text-center text-white">Nuestro Blog</h1>
+        
+        {posts.length === 0 ? (
+          <div className="text-center py-12">
+            <h2 className="text-2xl font-semibold mb-4 text-white">No hay artículos disponibles</h2>
+            <p className="text-gray-300">Vuelve pronto para ver nuevo contenido.</p>
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {posts.map((post) => (
+              <div key={post.id} className="bg-black/40 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row border border-lime-300/20">
+                {post.imageUrl && (
+                  <div className="relative h-64 md:w-1/3 w-full">
+                    <Image
+                      src={post.imageUrl}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div className="p-6 flex-grow md:w-2/3">
+                  <h2 className="text-2xl font-semibold mb-2 text-white">{post.title}</h2>
+                  <p className="text-gray-300 mb-4 text-sm">
+                    Por {post.author.name} • {formatDate(post.createdAt)}
+                  </p>
+                  <p className="text-gray-300 mb-6">{post.excerpt}</p>
+                  <Link 
+                    href={`/blog/${post.slug}`}
+                    className="inline-flex items-center gap-2 bg-lime-300 text-black hover:bg-lime-300/90 font-medium py-2 px-6 rounded-xl transition-colors"
+                  >
+                    Leer más
+                    <FaArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
-              )}
-              <div className="p-6 flex-grow md:w-2/3">
-                <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Por {post.author.name} • {formatDate(post.createdAt)}
-                </p>
-                <p className="text-gray-700 mb-6">{post.excerpt}</p>
-                <Link 
-                  href={`/blog/${post.slug}`}
-                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded transition-colors"
-                >
-                  Leer más
-                </Link>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 } 

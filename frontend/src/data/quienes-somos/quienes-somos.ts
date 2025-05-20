@@ -1,6 +1,7 @@
 interface ContentItem {
   title: string;
   description: string;
+  icon?: string;
 }
 
 export const misionVision: ContentItem[] = [
@@ -17,15 +18,23 @@ export const misionVision: ContentItem[] = [
 export const valores: ContentItem[] = [
   {
     title: "Excelencia Técnica",
-    description: "Dominamos las últimas tecnologías y mejores prácticas del desarrollo web y SEO para garantizar soluciones robustas y eficientes."
+    description: "Dominamos las últimas tecnologías y mejores prácticas del desarrollo web y SEO para garantizar soluciones robustas y eficientes.",
+    icon: "lightbulb"
   },
   {
     title: "Innovación Práctica",
-    description: "Implementamos soluciones probadas y optimizadas que aseguran resultados tangibles para tu negocio."
+    description: "Implementamos soluciones probadas y optimizadas que aseguran resultados tangibles para tu negocio.",
+    icon: "rocket"
   },
   {
     title: "Transparencia",
-    description: "Mantenemos una comunicación clara y directa, con procesos y objetivos bien definidos desde el primer día."
+    description: "Mantenemos una comunicación clara y directa, con procesos y objetivos bien definidos desde el primer día.",
+    icon: "handshake"
+  },
+  {
+    title: "Trabajo en Equipo",
+    description: "Fomentamos la colaboración y el trabajo en equipo para lograr los mejores resultados para nuestros clientes.",
+    icon: "users"
   }
 ];
 

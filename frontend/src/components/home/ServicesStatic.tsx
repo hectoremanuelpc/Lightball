@@ -14,24 +14,36 @@ export default function ServicesStatic() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
 
   return (
-    <div ref={containerRef} className="relative py-24 overflow-hidden bg-gradient-to-b from-secondary/20 to-white" id="servicios">
+    <div ref={containerRef} className="relative py-24 overflow-hidden bg-gradient-to-b from-davys-gray/10 to-white-smoke" id="servicios">
       {/* Elementos de fondo con parallax */}
       <motion.div
         className="absolute inset-0 z-0"
         style={{ y }}
       >
-        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/3" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl translate-y-1/2 translate-x-1/3" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-black/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/3" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-lime/5 rounded-full blur-3xl translate-y-1/2 translate-x-1/3" />
       </motion.div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold mb-4 text-white"
+          >
             Nuestros Servicios
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-xl text-davys-gray max-w-3xl mx-auto"
+          >
             Ofrecemos soluciones tecnológicas integrales adaptadas a las necesidades específicas de tu negocio.
-          </p>
+          </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -42,13 +54,13 @@ export default function ServicesStatic() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true, margin: '-50px' }}
-              className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-border"
+              className="group bg-black/40 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-lime-300/20 hover:border-lime-300/40"
             >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
+              <div className="w-16 h-16 bg-lime-300/10 rounded-xl flex items-center justify-center text-lime-300 mb-6 group-hover:bg-lime-300/20 transition-colors duration-300">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-              <p className="text-muted-foreground">{service.description}</p>
+              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-lime-300 transition-colors duration-300">{service.title}</h3>
+              <p className="text-gray-300 leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>
