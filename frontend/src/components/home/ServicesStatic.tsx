@@ -40,7 +40,7 @@ export default function ServicesStatic() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-xl text-davys-gray max-w-3xl mx-auto"
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
             Ofrecemos soluciones tecnológicas integrales adaptadas a las necesidades específicas de tu negocio.
           </motion.p>
