@@ -1,5 +1,11 @@
 import { MetadataRoute } from 'next';
 
+interface BlogPost {
+  slug: string;
+  updatedAt?: string;
+  createdAt: string;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
@@ -43,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const response = await fetch(`${baseUrl}/api/blog/posts`);
     if (response.ok) {
       const posts = await response.json();
-      blogRoutes = posts.map((post: any) => ({
+      blogRoutes = posts.map((post: BlogPost) => ({
         url: `${baseUrl}/blog/${post.slug}`,
         lastModified: new Date(post.updatedAt || post.createdAt),
         changeFrequency: 'weekly' as const,
