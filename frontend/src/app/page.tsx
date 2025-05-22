@@ -50,14 +50,15 @@ const websiteJsonLd = {
   name: 'Lightball',
   url: process.env.NEXT_PUBLIC_APP_URL,
   description: 'Consultoría tecnológica especializada en desarrollo web, móvil, cloud y soluciones de inteligencia artificial.',
-  potentialAction: {
+  // TODO CUANDO ESTÉ EL BLOG
+  /*potentialAction: {
     '@type': 'SearchAction',
     'target': {
       '@type': 'EntryPoint',
-      'urlTemplate': `${process.env.NEXT_PUBLIC_APP_URL}/search?q={search_term_string}`
+      'urlTemplate': `${process.env.NEXT_PUBLIC_APP_URL}/blog/search?q={search_term_string}`
     },
     'query-input': 'required name=search_term_string'
-  }
+  }*/
 };
 
 export default function HomePage() {
@@ -84,18 +85,6 @@ export default function HomePage() {
         <Testimonials />
         <ContactCTAStatic />
       </main>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-        `}
-      </Script>
     </>
   );
 }
