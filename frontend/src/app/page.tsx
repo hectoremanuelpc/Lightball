@@ -62,6 +62,7 @@ const websiteJsonLd = {
 };
 
 export default function HomePage() {
+
   return (
     <>
       {/* Script JSON-LD para SEO */}

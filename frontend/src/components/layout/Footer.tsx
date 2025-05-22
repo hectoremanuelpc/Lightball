@@ -1,10 +1,46 @@
+'use client';
+
 import Link from 'next/link';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import Logo from '@/components/ui/Logo';
+import { useState } from 'react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter/suscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        setMessage(data.message);
+        setEmail(''); // Limpiar el campo de email
+      } else {
+        setStatus('error');
+        setMessage(data.error);
+      }
+    } catch (error) {
+      setStatus('error');
+      setMessage('Error al procesar la suscripción');
+    }
+  };
 
   return (
     <footer className="relative bg-black py-24 overflow-hidden">
@@ -107,17 +143,28 @@ const Footer = () => {
             <p className="text-gray-300 mb-4">
               Suscríbete para recibir nuestras novedades.
             </p>
-            <form className="space-y-4">
-              <input
-                type="email"
-                placeholder="Tu email"
-                className="w-full px-4 py-2 bg-black/40 border border-lime-300/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-lime-300/40 transition-colors duration-300"
-              />
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <input
+                  type="email"
+                  placeholder="Tu email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-2 bg-black/40 border border-lime-300/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-lime-300/40 transition-colors duration-300"
+                  disabled={status === 'loading'}
+                />
+                {message && (
+                  <p className={`mt-2 text-sm ${status === 'success' ? 'text-lime-300' : 'text-red-400'}`}>
+                    {message}
+                  </p>
+                )}
+              </div>
               <button
                 type="submit"
-                className="w-full px-4 py-2 bg-lime-300 text-black font-semibold rounded-lg hover:bg-lime-300/90 transition-colors duration-300"
+                disabled={status === 'loading'}
+                className="w-full px-4 py-2 bg-lime-300 text-black font-semibold rounded-lg hover:bg-lime-300/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Suscribirse
+                {status === 'loading' ? 'Suscribiendo...' : 'Suscribirse'}
               </button>
             </form>
           </div>
