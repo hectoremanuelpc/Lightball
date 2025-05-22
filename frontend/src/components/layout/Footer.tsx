@@ -39,6 +39,7 @@ const Footer = () => {
     } catch (error) {
       setStatus('error');
       setMessage('Error al procesar la suscripción');
+      console.error('Error en la suscripción:', error);
     }
   };
 

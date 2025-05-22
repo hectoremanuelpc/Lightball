@@ -6,9 +6,18 @@ interface MailchimpMemberResponse {
   id: string;
   email_address: string;
   status: string;
-  merge_fields: Record<string, any>;
+  merge_fields: Record<string, unknown>;
   timestamp_signup: string;
   unique_email_id: string;
+}
+
+// Interfaz para el error de Mailchimp
+interface MailchimpError {
+  status: number;
+  response?: {
+    text: string;
+  };
+  message?: string;
 }
 
 // Validación de variables de entorno
@@ -92,13 +101,14 @@ export async function POST(req: Request) {
       }
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error al suscribir:', error);
 
     // Manejar error específico de email ya existente
-    if (error.status === 400 && error.response?.text) {
+    const mailchimpError = error as MailchimpError;
+    if (mailchimpError.status === 400 && mailchimpError.response?.text) {
       try {
-        const responseBody = JSON.parse(error.response.text);
+        const responseBody = JSON.parse(mailchimpError.response.text);
         if (responseBody.title === 'Member Exists') {
           return NextResponse.json(
             {
@@ -108,7 +118,7 @@ export async function POST(req: Request) {
             { status: 400 }
           );
         }
-      } catch (e) {
+      } catch {
         // Si no podemos parsear la respuesta, continuamos con el error genérico
       }
     }
@@ -118,7 +128,7 @@ export async function POST(req: Request) {
       {
         success: false,
         error: 'Error al procesar la suscripción',
-        details: error.message
+        details: mailchimpError.message || 'Error desconocido'
       },
       { status: 500 }
     );
