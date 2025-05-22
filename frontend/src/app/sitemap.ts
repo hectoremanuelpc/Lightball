@@ -29,10 +29,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
   ];
 
-  // TODO: Agregar rutas dinámicas desde la API o base de datos
-  // const dynamicRoutes = await fetchDynamicRoutes();
+  // Intentar obtener las rutas del blog si existen
+  let blogRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const response = await fetch(`${baseUrl}/api/blog/posts`);
+    if (response.ok) {
+      const posts = await response.json();
+      blogRoutes = posts.map((post: any) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: new Date(post.updatedAt || post.createdAt),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+      }));
+    }
+  } catch (error) {
+    console.error('Error fetching blog posts for sitemap:', error);
+  }
   
-  return [...mainRoutes];
+  return [...mainRoutes, ...blogRoutes];
 } 

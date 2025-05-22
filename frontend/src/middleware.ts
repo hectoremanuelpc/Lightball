@@ -16,6 +16,13 @@ function isAuthApiRoute(url: string): boolean {
 }
 
 /**
+ * Verifica si la ruta es un archivo SEO
+ */
+function isSEOFile(pathname: string): boolean {
+  return pathname === '/robots.txt' || pathname === '/sitemap.xml';
+}
+
+/**
  * Verifica si una URL es una ruta pública (no requiere autenticación)
  */
 /*
@@ -33,6 +40,11 @@ function isPublicRoute(pathname: string): boolean {
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const fullPath = pathname + search;
+
+  // Permitir acceso directo a archivos SEO
+  if (isSEOFile(pathname)) {
+    return NextResponse.next();
+  }
 
   // Evitar bucles de redirección
   if (isLoginRedirect(fullPath)) {

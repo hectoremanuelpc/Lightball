@@ -11,13 +11,12 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/api/*',
           '/admin/*',
-          '/_next/*',
           '/*.json$',
         ],
       },
       {
         userAgent: 'GPTBot',
-        disallow: ['/admin/*'],
+        disallow: ['/admin/*', '/api/*'],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
