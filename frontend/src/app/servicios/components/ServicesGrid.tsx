@@ -15,9 +15,14 @@ export default function ServicesGrid({ services }: ServicesGridProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           viewport={{ once: true }}
           className="text-center mb-16"
+          style={{
+            willChange: 'transform, opacity',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden'
+          }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Soluciones Digitales
@@ -33,8 +38,13 @@ export default function ServicesGrid({ services }: ServicesGridProps) {
               key={service.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
               viewport={{ once: true }}
+              style={{
+                willChange: 'transform, opacity',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
+              }}
             >
               <ServiceCard service={service} />
             </motion.div>

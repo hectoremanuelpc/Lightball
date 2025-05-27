@@ -53,12 +53,22 @@ export default function ServicesStatic() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ 
-                duration: 0.8,
-                delay: index * 0.2,
+                duration: 0.5,
+                delay: index * 0.08,
                 ease: "easeOut"
               }}
-              viewport={{ once: true, amount: 0.2, margin: "50px" }}
-              className="group bg-black/40 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-lime-300/20 hover:border-lime-300/40"
+              viewport={{ once: true, amount: 0.2 }}
+              className="group bg-black/60 rounded-xl p-8 shadow-lg hover:shadow-xl border border-lime-300/20 hover:border-lime-300/40"
+              style={{
+                willChange: 'transform, opacity',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'translate3d(0, 0, 0)',
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                isolation: 'isolate'
+              }}
             >
               <div className="w-16 h-16 bg-lime-300/10 rounded-xl flex items-center justify-center text-lime-300 mb-6 group-hover:bg-lime-300/20 transition-colors duration-300">
                 {service.icon}

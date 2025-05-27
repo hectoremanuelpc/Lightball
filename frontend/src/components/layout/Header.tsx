@@ -39,7 +39,9 @@ const Header = () => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 ${
-          scrolled ? 'bg-black/80 backdrop-blur-md' : 'bg-transparent'
+          scrolled 
+            ? 'header-backdrop' 
+            : 'bg-transparent'
         }`}
       >
         <div className="container mx-auto px-4 md:px-6">
@@ -82,8 +84,13 @@ const Header = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             className="fixed inset-0 z-[1000] md:hidden"
+            style={{
+              willChange: 'opacity',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden'
+            }}
           >
             <div className="absolute inset-0 bg-black" />
             <div className="relative h-full z-10">
@@ -103,7 +110,12 @@ const Header = () => {
                       key={route.path}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 + 0.2 }}
+                      transition={{ delay: index * 0.05 + 0.1, duration: 0.3, ease: "easeOut" }}
+                      style={{
+                        willChange: 'transform, opacity',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden'
+                      }}
                     >
                       <Link
                         href={route.path}

@@ -53,12 +53,22 @@ export default function FeaturesStatic() {
               initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ 
-                duration: 0.8,
-                delay: index * 0.2,
+                duration: 0.5,
+                delay: index * 0.08,
                 ease: "easeOut"
               }}
-              viewport={{ once: true, amount: 0.2, margin: "50px" }}
-              className="group relative bg-black/40 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-lime-300/20 hover:border-lime-300/40 overflow-hidden"
+              viewport={{ once: true, amount: 0.2 }}
+              className="group relative bg-black/60 rounded-2xl p-8 shadow-lg hover:shadow-xl border border-lime-300/20 hover:border-lime-300/40 overflow-hidden"
+              style={{
+                willChange: 'transform, opacity',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transform: 'translate3d(0, 0, 0)',
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                isolation: 'isolate'
+              }}
             >
               {/* Línea decorativa superior */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-lime-300/0 via-lime-300/50 to-lime-300/0" />

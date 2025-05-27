@@ -8,11 +8,16 @@ export default function ContactInfo() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
+      transition={{ duration: 0.4, delay: 0.05, ease: "easeOut" }}
       className="relative group"
+      style={{
+        willChange: 'transform, opacity',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden'
+      }}
     >
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--lime)]/20 via-[var(--lime)]/10 to-transparent rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-      <div className="relative bg-black/80 backdrop-blur-md rounded-xl p-6 border border-[var(--lime)]/20 hover:border-[var(--lime)]/40 transition-all duration-300">
+      <div className="relative bg-black/90 rounded-xl p-6 border border-[var(--lime)]/20 hover:border-[var(--lime)]/40 transition-colors duration-300">
         <h3 className="text-xl font-bold text-white mb-6">Información de Contacto</h3>
         <div className="space-y-4">
           <div className="flex items-start space-x-3">

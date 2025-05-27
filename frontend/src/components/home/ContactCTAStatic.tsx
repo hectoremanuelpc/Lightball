@@ -18,17 +18,29 @@ export default function ContactCTAStatic() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             viewport={{ once: true }}
             className="space-y-8"
+            style={{
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              transform: 'translate3d(0, 0, 0)',
+              WebkitTransform: 'translate3d(0, 0, 0)'
+            }}
           >
             <div className="inline-block">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                 viewport={{ once: true }}
                 className="bg-lime-300/10 rounded-2xl p-3 inline-block"
+                style={{
+                  willChange: 'transform, opacity',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden'
+                }}
               >
                 <FaRocket className="w-6 h-6 text-lime-300" />
               </motion.div>
@@ -42,8 +54,13 @@ export default function ContactCTAStatic() {
                   className="absolute -bottom-2 left-0 w-full h-1 bg-lime-300"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                   viewport={{ once: true }}
+                  style={{
+                    willChange: 'transform',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden'
+                  }}
                 />
               </span>
               ?
@@ -86,11 +103,18 @@ export default function ContactCTAStatic() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             viewport={{ once: true }}
             className="relative hidden md:block"
+            style={{
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              transform: 'translate3d(0, 0, 0)',
+              WebkitTransform: 'translate3d(0, 0, 0)'
+            }}
           >
-            <div className="relative z-10 bg-black/40 backdrop-blur-md rounded-2xl p-8 border border-lime-300/20 shadow-xl">
+            <div className="relative z-10 bg-black/60 rounded-2xl p-8 border border-lime-300/20 shadow-xl">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-lime-300/0 via-lime-300/20 to-lime-300/0 rounded-2xl blur-sm" />
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

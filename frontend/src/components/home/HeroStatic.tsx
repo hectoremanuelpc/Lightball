@@ -96,7 +96,7 @@ export default function HeroStatic() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center mb-24 sm:mb-0"
+            className="flex flex-col sm:flex-row gap-6 justify-center mb-32 sm:mb-16 md:mb-0"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -136,7 +136,7 @@ export default function HeroStatic() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
-        className="absolute bottom-[calc(2rem+env(safe-area-inset-bottom))] sm:bottom-12 left-1/2 transform -translate-x-1/2 cursor-pointer"
+        className="absolute bottom-[calc(2rem+env(safe-area-inset-bottom))] sm:bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 cursor-pointer z-20"
         onClick={scrollToNextSection}
         whileHover={{ scale: 1.1 }}
         aria-label="Desplazarse a la siguiente sección"
@@ -144,7 +144,7 @@ export default function HeroStatic() {
       >
         <div className="flex flex-col items-center">
           <motion.span 
-            className="hidden sm:block text-sm text-white font-medium mb-3 cursor-pointer"
+            className="hidden md:block text-sm text-white font-medium mb-2 cursor-pointer"
             animate={{ opacity: [0.6, 1, 0.6] }}
             transition={{ 
               duration: 2,
@@ -155,9 +155,9 @@ export default function HeroStatic() {
             Descubre más
           </motion.span>
           <motion.div
-            className="bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-full shadow-lg border border-white/30"
+            className="bg-white/10 backdrop-blur-sm p-2 sm:p-3 md:p-4 rounded-full shadow-lg border border-white/30"
             animate={{ 
-              y: [0, 6, 0],
+              y: [0, 4, 0],
             }}
             transition={{ 
               repeat: Infinity, 
@@ -165,7 +165,7 @@ export default function HeroStatic() {
               ease: "easeInOut"
             }}
           >
-            <BsArrowDown className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-300" />
+            <BsArrowDown className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-zinc-300" />
           </motion.div>
         </div>
       </motion.div>

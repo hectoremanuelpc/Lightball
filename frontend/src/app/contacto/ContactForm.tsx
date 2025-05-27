@@ -49,7 +49,13 @@ const ErrorMessage = ({ message }: { message: string }) => (
     <motion.p
         initial={{ opacity: 0, y: -5 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
         className="mt-1 text-sm text-red-400 flex items-center"
+        style={{
+            willChange: 'transform, opacity',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden'
+        }}
     >
         <BiErrorCircle className="w-3 h-3 mr-1 flex-shrink-0" />
         {message}
@@ -155,7 +161,13 @@ export default function ContactForm() {
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className="bg-[var(--lime)]/10 text-[var(--lime)] p-4 rounded-lg mb-6 border border-[var(--lime)]/20"
+                    style={{
+                        willChange: 'transform, opacity',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden'
+                    }}
                 >
                     <div className="flex items-center">
                         <BsCheckCircle className="w-5 h-5 mr-2" />
@@ -169,7 +181,13 @@ export default function ContactForm() {
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className="bg-red-500/10 text-red-400 p-4 rounded-lg mb-6 border border-red-500/20"
+                    style={{
+                        willChange: 'transform, opacity',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden'
+                    }}
                 >
                     <div className="flex items-center">
                         <BiErrorCircle className="w-5 h-5 mr-2" />
